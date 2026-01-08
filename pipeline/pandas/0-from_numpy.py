@@ -1,19 +1,15 @@
 #!/usr/bin/env python3
+
+'''
+This module creates np array and assign it to df
+Before that we need to upload pandas library
+'''
 import pandas as pd
-import numpy as np
+import string
 
-# s = pd.Series([1, 2.6, 2],
-#               index=["i", "r", "a"])
-# def from_numpy(array):
-#     return pd.DataFrame(array)
-#print(s)
-
-dict_arr = { 'key': 5,
-            'key2': 7,
-            'key3': 9
-            }
-
-seriesFromDict = pd.Series(dict_arr,
-                           index=['key', 'key3'],
-                           )
-print(seriesFromDict)
+def from_numpy(array):
+    '''
+    This function creates orders then assign them to dataframe as columns
+    '''
+    df = pd.DataFrame(array, columns=list(string.ascii_uppercase[:array.shape[1]]))
+    return df
