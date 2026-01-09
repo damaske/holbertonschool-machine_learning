@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 
+'''
+This module converts and renames Timestamp column
+'''
 import pandas as pd
 
 
