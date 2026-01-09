@@ -2,6 +2,7 @@
 
 import pandas as pd
 
+
 def rename(df):
     '''
     This function renames the columns of a DataFrame
