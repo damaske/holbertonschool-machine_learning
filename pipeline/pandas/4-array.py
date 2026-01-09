@@ -13,5 +13,5 @@ def array(df):
     This fumction does same thing like above
     '''
     df_somecolums = df.loc[:, ["High", "Close"]].tail(10)
-    arr = df.to_numpy()
+    arr = df_somecolums.to_numpy()
     return arr
