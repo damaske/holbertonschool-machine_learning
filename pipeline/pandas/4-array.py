@@ -6,12 +6,10 @@ converts them into array
 '''
 
 
-import pandas as pd
-
 def array(df):
     '''
     This fumction does same thing like above
     '''
-    df_somecolums = df[["High", "Close"]].tail(10)
+    df_somecolums = df.loc[:, ["High", "Close"]].tail(10)
     arr = df_somecolums.to_numpy()
     return arr
