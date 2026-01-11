@@ -7,11 +7,12 @@ This module fills data
 
 def fill(df):
     '''
-    This fumction does same thing like above
+    Clean and fill missing values in the DataFrame
     '''
-    df.drop('Weighted_Price', axis=1, inplace=True)
+    if 'Weighted_Price' in df.columns:
+        df = df.drop(columns=['Weighted_Price'])
     df['Close'].fillna(method='ffill', inplace=True)
     for col in ['High', 'Low', 'Open']:
         df[col].fillna(df['Close'], inplace=True)
-    df['Volume_(BTC)', 'Volume_(Currency'].fillna(0, inplace=True)
+    df[['Volume_(BTC)', 'Volume_(Currency)']].fillna(0, inplace=True)
     return df
