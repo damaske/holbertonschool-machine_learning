@@ -9,5 +9,5 @@ def prune(df):
     '''
     This fumction does same thing like above
     '''
-    df.dropna(subset=["Close"])
+    df = df.dropna(subset=["Close"])
     return df
