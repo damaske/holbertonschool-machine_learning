@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
+'''
+This module plots simple line
+'''
 import numpy as np
 import matplotlib.pyplot as plt
+
 
 def line():
     '''
