@@ -9,7 +9,7 @@ def fill(df):
     '''
     This fumction does same thing like above
     '''
-    df = df.drop('Weighted_Price', axis=1)
+    df.drop('Weighted_Price', axis=1, inplace=True)
     df['Close'].fillna(method='ffill', inplace=True)
     for col in ['High', 'Low', 'Open']:
         df[col].fillna(df['Close'], inplace=True)
