@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 import pandas as pd
 import matplotlib.pyplot as plt
+from_file = __import__('2-from_file').from_file
+
 """
 This module visualizes the daily resampled data"
 """
