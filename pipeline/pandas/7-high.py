@@ -9,5 +9,5 @@ def high(df):
     '''
     This fumction does same thing like above
     '''
-    df_sort = df.sort_values(by="High", ascending=False, inplace=True)
+    df_sort = df.sort_values(by="High", ascending=False)
     return df_sort
