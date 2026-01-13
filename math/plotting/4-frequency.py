@@ -21,4 +21,3 @@ def frequency():
     plt.ylabel('Number of Students')
     plt.title('Project A')
     plt.show()
-
