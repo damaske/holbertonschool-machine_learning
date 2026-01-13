@@ -5,6 +5,7 @@ This module plots a histogram of student grades
 import numpy as np
 import matplotlib.pyplot as plt
 
+
 def frequency():
     """
     This function plots histogram of student grades
