@@ -40,4 +40,3 @@ def bars():
     plt.legend()
 
     plt.show()
-bars()
