@@ -8,7 +8,8 @@ import matplotlib.pyplot as plt
 
 def bars():
     """
-    Create a stacked bar chart showing quantities of different fruits per person.
+    Create a stacked bar chart showing quantities
+    of different fruits per person.
     """
     np.random.seed(5)
     fruit = np.random.randint(0, 20, (4, 3))
