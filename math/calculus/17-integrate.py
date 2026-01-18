@@ -26,8 +26,8 @@ def poly_integral(poly, C=0):
         if coeff.is_integer():
             coeff = int(coeff)
         poly_int.append(coeff)
-      
+  
     while len(poly_int) > 1 and poly_int[-1] == 0:
         poly_int.pop()
-      
+
     return poly_int
