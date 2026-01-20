@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+"""function that show count rows and elements of rows"""
+
 
 def matrix_shape(matrix):
     """Calculates the shape of a matrix"""
