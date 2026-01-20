@@ -8,8 +8,8 @@ def add_matrices2D(mat1, mat2):
     if len(mat1[0]) != len(mat2[0]):
         return None
     for i in range(len(mat1)):
-        row1 = len(mat1)
-        row2 = len(mat2)
+        row1 = mat1[i]
+        row2 = mat2[i]
 
         if isinstance(row1, list) and isinstance(row2, list):
             if len(row1) != len(row2):
