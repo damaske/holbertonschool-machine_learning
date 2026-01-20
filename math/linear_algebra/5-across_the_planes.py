@@ -10,7 +10,7 @@ def add_matrices2D(mat1, mat2):
     for i in range(len(mat1)):
         row1 = len(mat1)
         row2 = len(mat2)
-
+    if isinstance(row1, list) and isinstance(row2, list):
         if len(row1) != len(row2):
             return None
         new_row = []
