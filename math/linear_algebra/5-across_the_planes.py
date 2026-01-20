@@ -10,12 +10,12 @@ def add_matrices2D(mat1, mat2):
     for i in range(len(mat1)):
         row1 = len(mat1)
         row2 = len(mat2)
-    if isinstance(row1, list) and isinstance(row2, list):
-        if len(row1) != len(row2):
-            return None
-        new_row = []
 
-        for j in range(len(row1)):
-            new_row.append(row1[j] + row2[j])
-        new_mat.append(new_row)
+        if isinstance(row1, list) and isinstance(row2, list):
+            if len(row1) != len(row2):
+                return None
+            new_row = [row1[j] + row2[j] for j in range(len(row1))]
+            new_mat.append(new_row)
+        else:
+            new_mat.append(row1 + row2)
     return new_mat
