@@ -4,19 +4,11 @@
 
 def cat_matrices2D(mat1, mat2, axis=0):
     """def cat_matrices2D(mat1, mat2, axis=0)"""
-    if axis != 0:
+    if (len(mat1[0]) == len(mat2[0])) and (axis == 0):
+        concat = mat1 + mat2
+        return concat
+    elif (len(mat1) == len(mat2)) and (axis == 1):
+        concat = [mat1[j] + mat2[j] for j in range(len(mat1))]
+        return concat
+    else:
         return None
-
-    if len(mat1[0]) != len(mat2[0]):
-        return None
-
-    new_mat = []
-
-    for row in mat1:
-        new_mat.append(list(row))
-
-    for row in mat2:
-        new_mat.append(list(row))
-
-    return new_mat
-
