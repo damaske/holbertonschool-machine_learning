@@ -13,10 +13,10 @@ def cat_matrices2D(mat1, mat2, axis=0):
     new_mat = []
 
     for row in mat1:
-        new_mat.append(row[:])
+        new_mat.append(list(row))
 
     for row in mat2:
-        new_mat.append(row[:])
+        new_mat.append(list(row))
 
     return new_mat
 
