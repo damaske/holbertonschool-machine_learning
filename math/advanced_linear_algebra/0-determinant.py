@@ -2,6 +2,7 @@
 """code that calculates the determinant of a matrix"""
 import numpy as np
 
+
 def determinant(matrix):
     """function that calculates the determinant of a matrix"""
     if not isinstance(matrix, np.ndarray):
