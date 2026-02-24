@@ -18,7 +18,7 @@ class Poisson:
                     self.lambtha = float(sum(data) / len(data))
             else:
                 raise TypeError("data must be a list")
-    
+
     def pmf(self, k):
         """Calculates the value of the PMF for a given number of “successes”"""
         if k < 0:
@@ -30,4 +30,3 @@ class Poisson:
             for i in range(1, k + 1):
                 factorial *= i
             return (self.lambtha ** k * e ** -self.lambtha) / factorial
-        
