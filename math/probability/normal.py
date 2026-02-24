@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Normal distribution module"""
 
+
 class Normal:
     """Normal distribution class"""
     def __init__(self, data=None, mean=0., stddev=1.):
