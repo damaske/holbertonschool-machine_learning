@@ -32,6 +32,10 @@ class Binomial:
         """Calculates the value of the PMF for a given number of successes"""
         if k < 0 or k > self.n:
             return 0
-        from math import factorial
-        coeff = factorial(self.n) / (factorial(k) * factorial(self.n - k))
+        def factorial(n):
+            result = 1
+            for i in range(1, n + 1):
+                result *= i
+            return result
+        coeff = factorial(self.n) // (factorial(k) * factorial(self.n - k))
         return coeff * (self.p ** k) * ((1 - self.p) ** (self.n - k))
