@@ -24,5 +24,6 @@ class Binomial:
             variance /= len(data)
             p = 1 - (variance / mean) if mean != 0 else 0
             n = round(mean / p) if p != 0 else 0
+            p = mean / n if n != 0 else 0
             self.n = int(n)
             self.p = float(p)
