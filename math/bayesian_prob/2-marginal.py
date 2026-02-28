@@ -30,4 +30,4 @@ def marginal(x, n, P, Pr):
         c = c * (n - i + 1) // i
 
     intersection_values = c * np.power(P, x) * np.power(1 - P, n - x) * Pr
-    return np.sum(intersection_values).astype(float)
+    return np.sum(intersection_values)
