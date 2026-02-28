@@ -2,7 +2,9 @@
 """Bayesian probability module"""
 import numpy as np
 
+
 def marginal(x, n, P, Pr):
+    """Calculates the marginal probability of obtaining the data"""
     if not isinstance(n, int) or n <= 0:
         raise ValueError("n must be a positive integer")
     if not isinstance(x, int) or x < 0:
