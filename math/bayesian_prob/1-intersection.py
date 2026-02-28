@@ -22,6 +22,8 @@ def intersection(x, n, P, Pr):
         raise ValueError("All values in P must be in the range [0, 1]")
     if not isinstance(Pr, np.ndarray) or Pr.ndim != 1:
         raise TypeError("Pr must be a 1D numpy.ndarray")
+    if Pr.shape != P.shape:
+        raise TypeError("Pr must be a numpy.ndarray with the same shape as P")
     if np.any((Pr < 0) | (Pr > 1)):
         raise ValueError("All values in Pr must be in the range [0, 1]")
     P = P.astype(float)
