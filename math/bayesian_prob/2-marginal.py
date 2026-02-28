@@ -25,7 +25,7 @@ def marginal(x, n, P, Pr):
     P = P.astype(float)
     Pr = Pr.astype(float)
 
-    c = 1
+    c = 1.0
     for i in range(1, x + 1):
         c = c * (n - i + 1) // i
 
