@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Bayesian probability module"""
+import numpy as np
 
 
 def intersection(x, n, P, Pr):
