@@ -5,6 +5,8 @@ import numpy as np
 
 def sensitivity(confusion):
     """function Calculates the sensitivity"""
-    #TP = confusion[1][1]
-    #FN = confusion[1][0]
-    return confusion[1][1] / (confusion[1][1] + confusion[1][0])
+    TP = np.diag(confusion)
+    FN = np.sum(confusion, axis=1) - TP
+    sensitivity = TP / (TP + FN)
+    return sensitivity
+
