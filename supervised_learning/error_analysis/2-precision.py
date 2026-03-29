@@ -6,8 +6,8 @@ import numpy as np
 def precision(confusion):
     """function Calculates the precision"""
     TP = np.diag(confusion)
-    #находишь диагональ на одной страке которая есть 
+    # находишь диагональ на одной страке которая есть
     FP = np.sum(confusion, axis=0) - TP
-    #из суммы по столбцу вычитаешь TP и получаешь FP
+    # из суммы по столбцу вычитаешь TP и получаешь FP
     precision = TP / (TP + FP)
     return precision
