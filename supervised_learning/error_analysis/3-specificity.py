@@ -6,12 +6,12 @@ import numpy as np
 def specificity(confusion):
     """function Calculates the specificity"""
     TP = np.diag(confusion)
-    #находишь диагональ на одной страке которая есть 
+    # находишь диагональ на одной страке которая есть
     FP = np.sum(confusion, axis=0) - TP
-    #из суммы по столбцу вычитаешь TP и получаешь FP
+    # из суммы по столбцу вычитаешь TP и получаешь FP
     FN = np.sum(confusion, axis=1) - TP
-    #из суммы по строке вычитаешь TP и получаешь FN
+    # из суммы по строке вычитаешь TP и получаешь FN
     TN = np.sum(confusion) - (FP + TP + FN)
-    #из общей суммы вычитаешь FP, TP и FN и получаешь TN
+    # из общей суммы вычитаешь FP, TP и FN и получаешь TN
     specificity = TN / (TN + FP)
     return specificity
