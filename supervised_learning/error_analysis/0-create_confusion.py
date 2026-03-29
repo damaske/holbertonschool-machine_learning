@@ -4,7 +4,7 @@ import numpy as np
 
 def create_confusion_matrix(labels, logits):
     """Creates a confusion matrix from the given labels and logits."""
-    true_labels = np.array(labels, axis=1)
+    true_labels = np.argmax(labels, axis=1)
     predicted_labels = np.argmax(logits, axis=1)
     
     classes = labels.shape[1]
