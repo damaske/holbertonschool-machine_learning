@@ -8,7 +8,7 @@ def create_confusion_matrix(labels, logits):
     predicted_labels = np.argmax(logits, axis=1)
     
     classes = labels.shape[1]
-    confusion_matrix = np.zeros((classes, classes), dtype=int)
+    confusion_matrix = np.zeros((classes, classes))
 
     for true_label, predicted_label in zip(true_labels, predicted_labels):
         confusion_matrix[true_label][predicted_label] += 1
