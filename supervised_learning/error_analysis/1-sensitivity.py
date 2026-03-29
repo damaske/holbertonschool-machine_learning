@@ -9,4 +9,3 @@ def sensitivity(confusion):
     FN = np.sum(confusion, axis=1) - TP
     sensitivity = TP / (TP + FN)
     return sensitivity
-
