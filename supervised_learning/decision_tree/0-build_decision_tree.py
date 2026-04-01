@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+"""Build a decision tree."""
 import numpy as np
 
 
