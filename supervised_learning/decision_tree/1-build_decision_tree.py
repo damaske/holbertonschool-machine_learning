@@ -16,15 +16,6 @@ class Node:
         self.sub_population = None
         self.depth = depth
 
-    def count_nodes_below(self, only_leaves=False):
-        """Count the number of nodes below this node."""
-        left_count = self.left_child.count_nodes_below(only_leaves=only_leaves)
-        right_count = self.right_child.count_nodes_below(only_leaves=only_leaves)
-        
-        if only_leaves:
-            return left_count + right_count
-        return 1 + left_count + right_count
-
     def max_depth_below(self):
         """function that calculates the maximum depth below the node"""
         return max(self.left_child.max_depth_below(),
@@ -59,6 +50,15 @@ class Decision_Tree():
         self.min_pop = min_pop
         self.split_criterion = split_criterion
         self.predict = None
+
+    def count_nodes_below(self, only_leaves=False):
+        """Count the number of nodes below this node."""
+        left_count = self.left_child.count_nodes_below(only_leaves=only_leaves)
+        right_count = self.right_child.count_nodes_below(only_leaves=only_leaves)
+        
+        if only_leaves:
+            return left_count + right_count
+        return 1 + left_count + right_count
 
     def depth(self):
         """function that calculates the maximum depth of the tree"""
