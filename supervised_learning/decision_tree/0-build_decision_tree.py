@@ -24,12 +24,14 @@ class Node:
 class Leaf(Node):
     """Leaf class for a decision tree."""
     def __init__(self, value, depth=None):
+        """Leaf class for a decision tree."""
         super().__init__()
         self.value = value
         self.is_leaf = True
         self.depth = depth
 
     def max_depth_below(self):
+            """Returns the depth of the leaf."""
         return self.depth
 
 
@@ -50,4 +52,5 @@ class Decision_Tree():
         self.predict = None
 
     def depth(self):
+        """Returns the depth of the tree."""
         return self.root.max_depth_below()
