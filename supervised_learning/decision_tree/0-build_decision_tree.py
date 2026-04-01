@@ -14,8 +14,7 @@ class Node:
         self.depth = depth
 
     def max_depth_below(self) :
-
-            ####### FILL IN THIS METHOD
+        return max(self.left_child.max_depth_below(), self.right_child.max_depth_below())
 
 class Leaf(Node):
     def __init__(self, value, depth=None):
