@@ -35,21 +35,33 @@ class Node:
         if only_leaves:
             return left_count + right_count
         return 1 + left_count + right_count
-    
-    def left_child_add_prefix(self,text):
-        lines=text.split("\n")
-        new_text="    +--"+lines[0]+"\n"
-        for x in lines[1:] :
-            new_text+=("    |  "+x)+"\n"
-            return (new_text)
 
-    def right_child_add_prefix(self,text):
-        lines=text.split("\n")
-        new_text="    +--"+lines[0]+"\n"
-        for x in lines[1:] :
-            new_text+=("    |  "+x)+"\n"
-            return (new_text)
+    def left_child_add_prefix(self, text):
+        """Add prefix to the left child string."""
+        lines = text.split("\n")
+        new_text = "+--" + lines[0] + "\n"
+        for x in lines[1:]:
+            new_text += "| " + x + "\n"
+        return new_text
 
+    def right_child_add_prefix(self, text):
+        """Add prefix to the right child string."""
+        lines = text.split("\n")
+        new_text = "+--" + lines[0] + "\n"
+        for x in lines[1:]:
+            new_text += x + "\n"
+        return new_text
+
+    def __str__(self):
+        """Return the string representation of this node."""
+        if self.is_root:
+            text = f"root [feature={self.feature}, threshold={self.threshold}]\n"
+        else:
+            text = f"-> node [feature={self.feature}, threshold={self.threshold}]\n"
+
+        text += self.left_child_add_prefix(str(self.left_child))
+        text += self.right_child_add_prefix(str(self.right_child))
+        return text[:-1]
 
 
 class Leaf(Node):
@@ -69,9 +81,10 @@ class Leaf(Node):
     def count_nodes_below(self, only_leaves=False):
         """Count the number of nodes below this leaf."""
         return 1
-    
+
     def __str__(self):
-        return (f"-> leaf [value={self.value}]")
+        """Return the string representation of this leaf."""
+        return f"-> leaf [value={self.value}]"
 
 
 class Decision_Tree():
@@ -99,6 +112,7 @@ class Decision_Tree():
     def count_nodes(self, only_leaves=False):
         """Count the number of nodes in the tree."""
         return self.root.count_nodes_below(only_leaves=only_leaves)
-    
+
     def __str__(self):
+        """Return the string representation of the tree."""
         return self.root.__str__()
