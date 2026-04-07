@@ -129,6 +129,7 @@ class Leaf(Node):
         return [self]
 
     def update_bounds_below(self):
+        """Update the bounds for this leaf."""
         pass
 
 
