@@ -39,7 +39,7 @@ class Node:
     def left_child_add_prefix(self, text):
         """Add prefix to the left child string."""
         lines = text.splitlines()
-        new_text = " +--->" + lines[0] + "\n"
+        new_text = " +---> " + lines[0] + "\n"
         for x in lines[1:]:
             new_text += " |     " + x + "\n"
         return new_text
@@ -47,7 +47,7 @@ class Node:
     def right_child_add_prefix(self, text):
         """Add prefix to the right child string."""
         lines = text.splitlines()
-        new_text = " +--->" + lines[0] + "\n"
+        new_text = " +---> " + lines[0] + "\n"
         for x in lines[1:]:
             new_text += "       " + x + "\n"
         return new_text
@@ -65,7 +65,6 @@ class Node:
                 f"threshold={self.threshold}]\n"
             )
 
-        # Clean children strings (remove leading "-> ")
         left_str = str(self.left_child)
         if left_str.startswith("-> "):
             left_str = left_str[3:]
