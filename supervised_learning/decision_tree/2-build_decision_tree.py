@@ -55,15 +55,9 @@ class Node:
     def __str__(self):
         """Return the string representation of this node."""
         if self.is_root:
-            text = (
-                f"root [feature={self.feature}, "
-                f"threshold={self.threshold}]\n"
-            )
+            text = f"root [feature={self.feature}, threshold={self.threshold}]\n"
         else:
-            text = (
-                f"-> node [feature={self.feature}, "
-                f"threshold={self.threshold}]\n"
-            )
+            text = f"-> node [feature={self.feature}, threshold={self.threshold}]\n"
 
         left_str = str(self.left_child)
         if left_str.startswith("-> "):
