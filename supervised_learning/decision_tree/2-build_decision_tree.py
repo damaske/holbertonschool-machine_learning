@@ -65,10 +65,10 @@ class Node:
                 f"threshold={self.threshold}]\n"
             )
 
-        # Important: remove the "-> " from children when they are leaves or nodes
+        # Clean children strings (remove leading "-> ")
         left_str = str(self.left_child)
         if left_str.startswith("-> "):
-            left_str = left_str[3:]   # remove "-> "
+            left_str = left_str[3:]
 
         right_str = str(self.right_child)
         if right_str.startswith("-> "):
