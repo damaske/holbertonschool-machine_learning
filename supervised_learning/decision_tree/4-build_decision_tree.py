@@ -15,8 +15,9 @@ class Node:
         self.right_child = right_child
         self.is_leaf = False
         self.is_root = is_root
-        self.sub_population = None
         self.depth = depth
+        self.lower = {}
+        self.upper = {}
 
     def max_depth_below(self):
         """Return the maximum depth below this node."""
@@ -25,12 +26,8 @@ class Node:
 
     def count_nodes_below(self, only_leaves=False):
         """Count the number of nodes below this node."""
-        left_count = self.left_child.count_nodes_below(
-            only_leaves=only_leaves
-        )
-        right_count = self.right_child.count_nodes_below(
-            only_leaves=only_leaves
-        )
+        left_count = self.left_child.count_nodes_below(only_leaves=only_leaves)
+        right_count = self.right_child.count_nodes_below(only_leaves=only_leaves)
 
         if only_leaves:
             return left_count + right_count
@@ -55,15 +52,11 @@ class Node:
     def __str__(self):
         """Return the string representation of this node."""
         if self.is_root:
-            text = (
-                f"root [feature={self.feature}, "
-                f"threshold={self.threshold}]\n"
-            )
+            text = (f"root [feature={self.feature}, "
+                    f"threshold={self.threshold}]\n")
         else:
-            text = (
-                f"-> node [feature={self.feature}, "
-                f"threshold={self.threshold}]\n"
-            )
+            text = (f"-> node [feature={self.feature}, "
+                    f"threshold={self.threshold}]\n")
 
         text += self.left_child_add_prefix(str(self.left_child))
         text += self.right_child_add_prefix(str(self.right_child))
@@ -73,32 +66,29 @@ class Node:
         """Return the list of leaves below this node."""
         return (self.left_child.get_leaves_below() +
                 self.right_child.get_leaves_below())
-    
+
     def update_bounds_below(self):
+        """Recursively compute lower and upper bounds for each node."""
         if self.is_root:
-            self.upper = {0: np.inf}
             self.lower = {0: -np.inf}
+            self.upper = {0: np.inf}
 
-        for child, is_left in [(self.left_child, True),
-                               (self.right_child, False)]:
-
+        # Propagate bounds to children
+        for child, is_left in [(self.left_child, True), (self.right_child, False)]:
+            # Copy parent's bounds
             child.lower = self.lower.copy()
             child.upper = self.upper.copy()
 
-            feature = self.feature
-            threshold = self.threshold
-             
-            if is_left:
-                child.upper[feature] = min(
-                    child.upper.get(feature, np.inf),
-                    threshold
-                )
-            else:
-                child.lower[feature] = max(
-                    child.lower.get(feature, -np.inf),
-                    threshold
-                )
+            # Update bound for current split feature
+            if self.feature is not None:
+                if is_left:   # left child: upper bound
+                    child.upper[self.feature] = min(
+                        child.upper.get(self.feature, np.inf), self.threshold)
+                else:         # right child: lower bound
+                    child.lower[self.feature] = max(
+                        child.lower.get(self.feature, -np.inf), self.threshold)
 
+        # Recurse
         for child in [self.left_child, self.right_child]:
             child.update_bounds_below()
 
@@ -108,10 +98,11 @@ class Leaf(Node):
 
     def __init__(self, value, depth=None):
         """Initialize a leaf."""
-        super().__init__()
+        super().__init__(depth=depth)
         self.value = value
         self.is_leaf = True
-        self.depth = depth
+        self.lower = {}
+        self.upper = {}
 
     def max_depth_below(self):
         """Return the depth of this leaf."""
@@ -130,7 +121,7 @@ class Leaf(Node):
         return [self]
 
     def update_bounds_below(self):
-        pass
+        pass   # Leaf is the end of recursion
 
 
 class Decision_Tree:
@@ -168,4 +159,5 @@ class Decision_Tree:
         return self.root.get_leaves_below()
 
     def update_bounds(self):
+        """Update bounds for all nodes starting from root."""
         self.root.update_bounds_below()
