@@ -65,8 +65,17 @@ class Node:
                 f"threshold={self.threshold}]\n"
             )
 
-        text += self.left_child_add_prefix(str(self.left_child))
-        text += self.right_child_add_prefix(str(self.right_child))
+        # Important: remove the "-> " from children when they are leaves or nodes
+        left_str = str(self.left_child)
+        if left_str.startswith("-> "):
+            left_str = left_str[3:]   # remove "-> "
+
+        right_str = str(self.right_child)
+        if right_str.startswith("-> "):
+            right_str = right_str[3:]
+
+        text += self.left_child_add_prefix(left_str)
+        text += self.right_child_add_prefix(right_str)
         return text.rstrip()
 
 
@@ -90,7 +99,7 @@ class Leaf(Node):
 
     def __str__(self):
         """Return the string representation of this leaf."""
-        return f"-> leaf [value={self.value}]"
+        return f"leaf [value={self.value}]"
 
 
 class Decision_Tree:
