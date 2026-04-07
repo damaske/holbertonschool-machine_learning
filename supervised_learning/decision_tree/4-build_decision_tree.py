@@ -82,23 +82,23 @@ class Node:
         for child, is_left in [(self.left_child, True),
                                (self.right_child, False)]:
 
-             child.lower = self.lower.copy()
-             child.upper = self.upper.copy()
+            child.lower = self.lower.copy()
+            child.upper = self.upper.copy()
 
-             feature = self.feature
-             threshold = self.threshold
+            feature = self.feature
+            threshold = self.threshold
              
-             if is_left:
+            if is_left:
                 child.upper[feature] = min(
-                child.upper.get(feature, np.inf),
-                threshold
+                    child.upper.get(feature, np.inf),
+                    threshold
                 )
             else:
                 child.lower[feature] = max(
                     child.lower.get(feature, -np.inf),
                     threshold
                 )
-       
+
         for child in [self.left_child, self.right_child]:
             child.update_bounds_below()
 
