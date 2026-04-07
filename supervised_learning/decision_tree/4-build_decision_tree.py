@@ -75,7 +75,7 @@ class Node:
         """Return the list of leaves below this node."""
         return (self.left_child.get_leaves_below() +
                 self.right_child.get_leaves_below())
-    
+
     def update_bounds_below(self):
         if self.is_root:
             self.upper = {0: np.inf}
@@ -167,4 +167,3 @@ class Decision_Tree:
 
     def update_bounds(self):
         self.root.update_bounds_below()
-    
