@@ -40,24 +40,37 @@ class Node:
         """Add prefix to the left child string."""
         lines = text.split("\n")
         new_text = "+--" + lines[0] + "\n"
+
         for x in lines[1:]:
-            new_text += "| " + x + "\n"
+            if x.startswith("+--") or x.startswith("->"):
+                new_text += "| " + x + "\n"
+            else:
+                new_text += x + "\n"
+
         return new_text
 
     def right_child_add_prefix(self, text):
         """Add prefix to the right child string."""
         lines = text.split("\n")
         new_text = "+--" + lines[0] + "\n"
+
         for x in lines[1:]:
             new_text += x + "\n"
+
         return new_text
 
     def __str__(self):
         """Return the string representation of this node."""
         if self.is_root:
-            text = f"root [feature={self.feature}, threshold={self.threshold}]\n"
+            text = (
+                f"root [feature={self.feature}, "
+                f"threshold={self.threshold}]\n"
+            )
         else:
-            text = f"-> node [feature={self.feature}, threshold={self.threshold}]\n"
+            text = (
+                f"-> node [feature={self.feature}, "
+                f"threshold={self.threshold}]\n"
+            )
 
         text += self.left_child_add_prefix(str(self.left_child))
         text += self.right_child_add_prefix(str(self.right_child))
@@ -87,7 +100,7 @@ class Leaf(Node):
         return f"-> leaf [value={self.value}]"
 
 
-class Decision_Tree():
+class Decision_Tree:
     """Decision tree class."""
 
     def __init__(self, max_depth=10, min_pop=1, seed=0,
