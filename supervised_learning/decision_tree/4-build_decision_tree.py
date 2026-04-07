@@ -77,6 +77,7 @@ class Node:
                 self.right_child.get_leaves_below())
 
     def update_bounds_below(self):
+        """Update the bounds for all nodes below this node."""
         if self.is_root:
             self.upper = {0: np.inf}
             self.lower = {0: -np.inf}
