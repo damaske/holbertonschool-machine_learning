@@ -39,17 +39,17 @@ class Node:
     def left_child_add_prefix(self, text):
         """Add prefix to the left child string."""
         lines = text.splitlines()
-        new_text = "+--->" + lines[0] + "\n"
-        for line in lines[1:]:
-            new_text += "|     " + line + "\n"
+        new_text = " +--->" + lines[0] + "\n"
+        for x in lines[1:]:
+            new_text += " |     " + x + "\n"
         return new_text
 
     def right_child_add_prefix(self, text):
         """Add prefix to the right child string."""
         lines = text.splitlines()
-        new_text = "+--->" + lines[0] + "\n"
-        for line in lines[1:]:
-            new_text += "     " + line + "\n"
+        new_text = " +--->" + lines[0] + "\n"
+        for x in lines[1:]:
+            new_text += "       " + x + "\n"
         return new_text
 
     def __str__(self):
