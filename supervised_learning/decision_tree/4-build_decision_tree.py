@@ -168,4 +168,5 @@ class Decision_Tree:
         return self.root.get_leaves_below()
 
     def update_bounds(self):
+        """Update the bounds for all nodes in the tree."""
         self.root.update_bounds_below()
