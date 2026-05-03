@@ -77,3 +77,22 @@ class Neuron:
         return self.__A
 # Шаг 1: z = W · X + b   (взвешенная сумма)
 # Шаг 2: A = σ(z)        (применяем сигмоид)
+
+    def cost(self, Y, A):
+        """
+        Calculates the cost of the model using logistic regression.
+
+        Parameters
+        Y : numpy.ndarray
+            The correct labels for the input data, with shape (1, m).
+        A : numpy.ndarray
+            The activated output of the neuron for each example, with
+            shape (1, m).
+
+        Returns
+        cost : float
+            The cost of the model.
+        """
+        m = Y.shape[1]
+        cost = -np.sum(Y * np.log(A) + (1 - Y) * np.log(1.0000001 - A)) / m
+        return cost
