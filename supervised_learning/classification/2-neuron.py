@@ -57,7 +57,7 @@ class Neuron:
     def A(self):
         """ Getter for the activation output A. """
         return self.__A
-    
+
     def forward_prop(self, X):
         """
         Calculates the forward propagation of the neuron.
