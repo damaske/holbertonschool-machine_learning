@@ -40,7 +40,7 @@ class Neuron:
             raise ValueError("nx must be a positive integer")
         else:
             self.__W = np.random.normal(0, 1, (1, nx))
-            #0—среднее (центр около нуля), 1-разброс (стандартное отклонение),
+            # 0—среднее (центр около нуля), 1-разброс (стандартное отклонение),
             # (1, nx)—форма матрицы: 1 строка, nx столбцов
             # Просто создаёт случайные начальные веса.
             self.__b = 0
@@ -76,7 +76,7 @@ class Neuron:
             The activation output of the neuron after forward propagation.
         """
         Z = np.dot(self.__W, X) + self.__b
-        #dot Перемножает матрицы — это и есть W · X
+        # dot Перемножает матрицы — это и есть W · X
         self.__A = 1 / (1 + np.exp(-Z))
         return self.__A
 # Шаг 1: z = W · X + b   (взвешенная сумма)
@@ -99,8 +99,8 @@ class Neuron:
         """
         m = Y.shape[1]
         cost = -np.sum(Y * np.log(A) + (1 - Y) * np.log(1.0000001 - A)) / m
-        #sum -складывает всё в одно число (поэлементно), 
-        #np.log - логарифм каждого элемента, 1.0000001 - это для избежания деления на ноль
+        # sum -складывает всё в одно число (поэлементно), 
+        # np.log - логарифм каждого элемента, 1.0000001 - это для избежания деления на ноль
         return cost
 
     def evaluate(self, X, Y):
@@ -124,7 +124,7 @@ class Neuron:
         A = self.forward_prop(X)
         cost = self.cost(Y, A)
         prediction = np.where(A >= 0.5, 1, 0)
-        #для каждого элемента A — если >= 0.5 то поставь 1, иначе 0
+        # для каждого элемента A — если >= 0.5 то поставь 1, иначе 0
         return prediction, cost
 
     def gradient_descent(self, X, Y, A, alpha=0.05):
