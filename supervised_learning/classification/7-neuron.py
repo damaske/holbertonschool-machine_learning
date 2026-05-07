@@ -156,7 +156,7 @@ class Neuron:
         self.__W -= alpha * dW
         self.__b -= alpha * db
 
-    def train(self, X, Y, iterations=5000, alpha=0.05):
+    def train(self, X, Y, iterations=5000, alpha=0.05, verbose=True, graph=True, step=100):
         """
         Trains the neuron by updating the private attributes W, b, and A.
 
@@ -171,6 +171,12 @@ class Neuron:
             The number of iterations to train over.
         alpha : float
             The learning rate for gradient descent.
+        verbose : bool
+            Whether to print training progress.
+        graph : bool
+            Whether to plot the training cost.
+        step : int
+            The number of iterations between printing progress.
 
         Returns
         prediction : numpy.ndarray
@@ -186,7 +192,19 @@ class Neuron:
             raise TypeError("alpha must be a float")
         if alpha <= 0:
             raise ValueError("alpha must be positive")
+        costs = []
         for i in range(iterations):
-            A = self.forward_prop(X) # A предсказания нейрона для всех примеров
-            self.gradient_descent(X, Y, A, alpha) # обновляем W и b, Y правильные ответы
-        return self.evaluate(X, Y) # возвращаем предсказания и ошибку после обучения
+            A = self.forward_prop(X)
+            self.gradient_descent(X, Y, A, alpha)
+            if i % step == 0 or i == iterations - 1:
+                cost = self.cost(Y, A)
+                costs.append(cost)
+                if verbose:
+                    print(f"Cost after iteration {i}: {cost}")
+        if graph:
+            plt.plot(range(0, iterations, step), costs)
+            plt.xlabel("Iteration")
+            plt.ylabel("Cost")
+            plt.title("Training Cost")
+            plt.show()
+        return self.evaluate(X, Y)
