@@ -74,4 +74,3 @@ class NST:
         rescaled_image = tf.clip_by_value(rescaled_image, 0.0, 1.0)
         rescaled_image = tf.expand_dims(rescaled_image, 0)
         return rescaled_image
-    
