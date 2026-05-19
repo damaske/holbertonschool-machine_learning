@@ -450,4 +450,3 @@ class Yolo:
         res_images = np.stack(res_images, axis=0)
 
         return (res_images, dims)
-    

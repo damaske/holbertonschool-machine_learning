@@ -394,4 +394,3 @@ class Yolo:
             images.append(cv2.imread(imagepath_i))
 
         return (images, image_paths)
-    

@@ -162,4 +162,3 @@ class Yolo:
             probs.append(probs_i)
 
         return (boxes, confidence, probs)
-    

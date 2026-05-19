@@ -238,4 +238,3 @@ class Yolo:
         filtro = np.where(box_classes_scores >= self.class_t)
 
         return (boxes[filtro], box_classes[filtro], box_classes_scores[filtro])
-    

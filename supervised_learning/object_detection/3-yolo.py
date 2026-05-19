@@ -363,4 +363,3 @@ class Yolo:
         predicted_box_scores = np.concatenate(predicted_box_scores)
 
         return (box_predictions, predicted_box_classes, predicted_box_scores)
-    
