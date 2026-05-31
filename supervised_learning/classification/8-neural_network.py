@@ -55,7 +55,16 @@ class NeuralNetwork:
             raise ValueError("nodes must be a positive integer")
 
         self.W1 = np.random.normal(0, 1, (nodes, nx))
-        self.b1 = np.zeros((nodes, 1))
+        # nx → сколько входных признаков
+        # nodes → сколько нейронов в скрытом слое
+        # 0 - среднее (центр около нуля), 1 - разброс (стандартное отклонение),
+        # (nodes, nx) - форма матрицы: nodes строк, nx столбцов
+        # Просто создаёт случайные начальные веса для скрытого слоя.
+#                 x1   x2   x3   ... xn
+#         n1     w11  w12  w13       w1n
+#         n2     w21  w22  w23       w2n
+# ...     nk     wk1  wk2  wk3       wkn
+        self.b1 = np.zeros((nodes, 1)) # Инициализируем смещения для скрытого слоя нулями. Форма (nodes, 1).
         self.A1 = 0
         self.W2 = np.random.normal(0, 1, (1, nodes))
         self.b2 = 0

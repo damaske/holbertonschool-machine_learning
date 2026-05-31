@@ -1,6 +1,12 @@
 #!/usr/bin/env python3
 """ Task 0: 0. Privatize Neuron"""
+from tabnanny import verbose
+
+import matplotlib
 import numpy as np
+import matplotlib
+import matplotlib.pyplot as plt
+print(matplotlib.get_backend())
 
 
 class Neuron:
@@ -193,16 +199,28 @@ class Neuron:
         if alpha <= 0:
             raise ValueError("alpha must be positive")
         costs = []
+        steps_list = []
+        A = self.forward_prop(X)
+        cost = self.cost(Y, A)
+        
+        costs.append(cost)
+        steps_list.append(0)
+        if verbose:
+            print(f"Cost after iteration 0: {cost}")
+        
         for i in range(iterations):
             A = self.forward_prop(X)
             self.gradient_descent(X, Y, A, alpha)
-            if i % step == 0 or i == iterations - 1:
+            
+            A = self.forward_prop(X)
+            if (i + 1) % step == 0 or i == iterations - 1:
                 cost = self.cost(Y, A)
                 costs.append(cost)
+                steps_list.append(i + 1)
                 if verbose:
-                    print(f"Cost after iteration {i}: {cost}")
+                    print(f"Cost after iteration {i + 1}: {cost}")
         if graph:
-            plt.plot(range(0, iterations, step), costs)
+            plt.plot(steps_list, costs)
             plt.xlabel("Iteration")
             plt.ylabel("Cost")
             plt.title("Training Cost")
