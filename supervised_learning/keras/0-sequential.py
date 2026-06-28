@@ -28,19 +28,21 @@ def build_model(nx, layers, activations, lambtha, keep_prob):
     model : keras.Sequential
         The constructed Keras model.
     """
-    model = K.Sequential()
+    model = K.Sequential() #Создается пустая последовательная модель
 
-    reg = K.regularizers.L1L2(l2=lambtha)
+    reg = K.regularizers.L1L2(l2=lambtha) # Создается объект регуляризации L2 с параметром lambtha
 
-    model.add(K.layers.Dense(units=layers[0],
-                             activation=activations[0],
+    #Первый слой создается отдельно, потому что только он должен знать размер входных данных (input_shape).
+    model.add(K.layers.Dense(units=layers[0], #количество нейронов в первом слое
+                             activation=activations[0], #функция активации для первого слоя activations = ["relu", "relu", "softmax"]
                              kernel_regularizer=reg,
-                             input_shape=(nx,),))
+                             input_shape=(nx,),)) # input_shape=(100,) (запятая что бы кортеджом стало)количество входных признаков nx
 
-    for i in range(1, len(layers)):
-        model.add(K.layers.Dropout(1 - keep_prob))
-        model.add(K.layers.Dense(units=layers[i],
-                                 activation=activations[i],
+    #второй и длаее слои создаются в цикле, так как они не требуют указания input_shape
+    for i in range(1, len(layers)): # для каждого слоя после первого
+        model.add(K.layers.Dropout(1 - keep_prob)) # добавляется слой dropout
+        model.add(K.layers.Dense(units=layers[i], #количество нейронов в i-м слое
+                                 activation=activations[i], #функция активации для i-го слоя
                                  kernel_regularizer=reg,
                                  ))
 
