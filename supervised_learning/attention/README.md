@@ -1,0 +1,27 @@
+Attention
+
+
+Resources:
+Read or watch:
+
+Attention Model Intuition
+Attention Model
+How Transformers work in deep learning and NLP: an intuitive introduction
+Transformers
+Bert, GPT : The Illustrated GPT-2 - Visualizing Transformer Language Models
+SQuAD
+Glue
+Self supervised learning
+Learning Objectives
+At the end of this project, you are expected to be able to explain to anyone, without the help of Google:
+
+General
+What is the attention mechanism?
+How to apply attention to RNNs
+What is a transformer?
+How to create an encoder-decoder transformer model
+What is GPT?
+What is BERT?
+What is self-supervised learning?
+How to use BERT for specific NLP tasks
+What is SQuAD? GLUE?
